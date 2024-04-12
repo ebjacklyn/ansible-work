@@ -1,0 +1,32 @@
+---
+- name: Deploy web app
+  hosts: n3
+  become: yes
+
+  tasks:
+  - name: Install GIT
+    yum:
+      name: git
+      state: present
+
+  - name: Install Httpd
+    yum:
+      name: httpd
+      state: present
+      
+  - name: Start Httpd
+    service:
+      name: httpd
+      state: started
+
+  - name: Enable Httpd
+    service:
+      name: httpd
+      enabled: yes       
+           
+
+  - name: Host Code
+    git:
+      repo: https://github.com/CeeyIT-Solutions/food3.git
+      dest: /var/www/html
+...
