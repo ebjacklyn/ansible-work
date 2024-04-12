@@ -1,0 +1,17 @@
+---
+- name: Deploy web app
+  hosts: g1
+  become: yes
+
+  tasks:
+  - name: Install GIT
+    yum:
+      name: git
+      state: present
+
+  - name: Host Code
+    git:
+      repo: https://github.com/ebjacklyn/ansible-work.git
+      dest: /var/www/html
+      force: yes
+...
